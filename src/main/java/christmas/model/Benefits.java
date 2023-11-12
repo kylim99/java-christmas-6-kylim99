@@ -9,6 +9,20 @@ public class Benefits {
     public Benefits(ConfirmOrder confirmOrder){
         applyDayBenefit(confirmOrder);
         applyWeekendBenefit(confirmOrder);
+        applyWeekdayBenefit(confirmOrder);
+    }
+
+    private void applyWeekdayBenefit(ConfirmOrder confirmOrder) {
+        if(!isWeekend(confirmOrder.getWeek())){
+            addBenefitPricePerDessert(confirmOrder.getConfirmOrder());
+        }
+    }
+
+    private void addBenefitPricePerDessert(Map<Food, Integer> confirmOrder) {
+        benefitPrice += confirmOrder.entrySet().stream()
+                .filter(entry -> entry.getKey().getType() == Type.DESSERT)
+                .mapToInt(entry -> 2023 * entry.getValue())
+                .sum();
     }
 
     private void applyWeekendBenefit(ConfirmOrder confirmOrder) {
@@ -18,11 +32,10 @@ public class Benefits {
     }
 
     private void addBenefitPricePerMain(Map<Food, Integer> confirmOrder) {
-        for(Entry<Food, Integer> entry : confirmOrder.entrySet()){
-            if(entry.getKey().getType() == Type.MAIN){
-                benefitPrice += 2023 * entry.getValue();
-            }
-        }
+        benefitPrice += confirmOrder.entrySet().stream()
+                .filter(entry -> entry.getKey().getType() == Type.MAIN)
+                .mapToInt(entry -> 2023 * entry.getValue())
+                .sum();
     }
 
     private boolean isWeekend(Week week) {
