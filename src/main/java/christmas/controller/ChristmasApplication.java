@@ -1,6 +1,7 @@
 package christmas.controller;
 
 
+import christmas.model.ConfirmOrder;
 import christmas.model.Food;
 import christmas.model.Order;
 import christmas.model.Week;
@@ -22,11 +23,11 @@ public class ChristmasApplication {
         int date = getDate();
         Week week = getWeek(date);
         Order order = getOrder();
-        Map<Food, Integer> confirmOrder = makeOrderSheet(order);
+        ConfirmOrder confirmOrder = new ConfirmOrder(makeOrderSheet(order),date,week);
         printOrderInformation(confirmOrder);
     }
 
-    private void printOrderInformation(Map<Food, Integer> confirmOrder) {
+    private void printOrderInformation(ConfirmOrder confirmOrder) {
         outputView.printOrderInformation(confirmOrder);
     }
 

@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.ConfirmOrder;
 import christmas.model.Food;
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -16,11 +17,11 @@ public class OutputView {
         System.out.println(WELCOME_MESSAGE);
     }
 
-    public void printOrderInformation(Map<Food, Integer> confirmOrder) {
+    public void printOrderInformation(ConfirmOrder confirmOrder) {
         AtomicInteger totalPrice = new AtomicInteger();
         System.out.println();
         System.out.println(INIT_ORDER_MENU_MESSAGE);
-        confirmOrder.forEach((food, quantity) -> {
+        confirmOrder.getConfirmOrder().forEach((food, quantity) -> {
             System.out.println(String.format(ORDER_MENU_MESSAGE, food.getName(), quantity));
             totalPrice.addAndGet(food.getPrice() * quantity);
         });

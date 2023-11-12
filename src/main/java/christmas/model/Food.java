@@ -18,4 +18,7 @@ public class Food {
         return this.price;
     }
 
+    public Type getType() {
+        return type;
+    }
 }
