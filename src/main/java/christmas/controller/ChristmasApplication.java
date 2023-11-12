@@ -1,6 +1,7 @@
 package christmas.controller;
 
 
+import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
 import christmas.model.Food;
 import christmas.model.Order;
@@ -25,6 +26,12 @@ public class ChristmasApplication {
         Order order = getOrder();
         ConfirmOrder confirmOrder = new ConfirmOrder(makeOrderSheet(order),date,week);
         printOrderInformation(confirmOrder);
+        applyBenefits(confirmOrder);
+    }
+
+    private void applyBenefits(ConfirmOrder confirmOrder) {
+        outputView.printBenefitTitle();
+        Benefits benefits = new Benefits(confirmOrder);
     }
 
     private void printOrderInformation(ConfirmOrder confirmOrder) {
