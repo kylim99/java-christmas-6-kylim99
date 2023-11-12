@@ -1,27 +1,25 @@
 package christmas.model;
 
-import christmas.view.InputView;
 import java.util.Map;
 
 public class Benefits {
 
     private int benefitPrice = 0;
     public Benefits(ConfirmOrder confirmOrder){
-        applyDayBenefit(confirmOrder);
-        applyWeekendBenefit(confirmOrder);
-        applyWeekdayBenefit(confirmOrder);
-        applySpecialDayBenefit(confirmOrder);
-        confirmPrice(confirmOrder);
+        if(confirmPrice(confirmOrder)){
+            applyDayBenefit(confirmOrder);
+            applyWeekendBenefit(confirmOrder);
+            applyWeekdayBenefit(confirmOrder);
+            applySpecialDayBenefit(confirmOrder);
+        }
     }
 
-    private void confirmPrice(ConfirmOrder confirmOrder) {
+    private boolean confirmPrice(ConfirmOrder confirmOrder) {
         int total =confirmOrder.getConfirmOrder().entrySet()
                 .stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-        if(total < 10000){
-            benefitPrice = 0;
-        }
+        return total > 10000;
     }
 
     private void applySpecialDayBenefit(ConfirmOrder confirmOrder) {
