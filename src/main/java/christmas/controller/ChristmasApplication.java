@@ -23,6 +23,11 @@ public class ChristmasApplication {
         Week week = getWeek(date);
         Order order = getOrder();
         Map<Food, Integer> confirmOrder = makeOrderSheet(order);
+        printOrderInformation(confirmOrder);
+    }
+
+    private void printOrderInformation(Map<Food, Integer> confirmOrder) {
+        outputView.printOrderInformation(confirmOrder);
     }
 
     private Map<Food, Integer> makeOrderSheet(Order order) {

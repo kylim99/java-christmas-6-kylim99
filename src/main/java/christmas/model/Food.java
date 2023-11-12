@@ -14,5 +14,8 @@ public class Food {
     public String getName(){
         return this.name;
     }
+    public int getPrice(){
+        return this.price;
+    }
 
 }
