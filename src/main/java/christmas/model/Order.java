@@ -22,4 +22,8 @@ public class Order {
                         splitOrder -> Integer.parseInt(splitOrder[1])
                 ));
     }
+
+    public Map<String,Integer> getOrderSheet(){
+        return this.orderSheet;
+    }
 }
