@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
 import christmas.model.Food;
 import java.text.DecimalFormat;
@@ -13,12 +14,14 @@ public class OutputView {
     private final String INIT_BENEFIT_MESSAGE = "<해택 내역>";
     private final String INIT_TOTAL_PRICE = "<할인 전 총주문 금액>";
     private final String ORDER_MENU_MESSAGE = "%s %d개";
+    private final String PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
     public void printWelcomeMessage(){
         System.out.println(WELCOME_MESSAGE);
     }
 
     public void printOrderInformation(ConfirmOrder confirmOrder) {
+        System.out.println(String.format(PREVIEW_MESSAGE,confirmOrder.getDate()));
         AtomicInteger totalPrice = new AtomicInteger();
         System.out.println();
         System.out.println(INIT_ORDER_MENU_MESSAGE);
@@ -36,6 +39,15 @@ public class OutputView {
     }
 
     public void printBenefitTitle() {
+        System.out.println();
         System.out.println(INIT_BENEFIT_MESSAGE);
+    }
+
+    public void printBenefit(Benefits benefits) {
+        System.out.println(benefits);
+    }
+
+    public void printPreviewMessage() {
+        System.out.println();
     }
 }

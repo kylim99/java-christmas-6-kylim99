@@ -31,7 +31,7 @@ public class ChristmasApplication {
 
     private void applyBenefits(ConfirmOrder confirmOrder) {
         outputView.printBenefitTitle();
-        Benefits benefits = new Benefits(confirmOrder);
+        outputView.printBenefit(new Benefits(confirmOrder));
     }
 
     private void printOrderInformation(ConfirmOrder confirmOrder) {
