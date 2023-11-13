@@ -2,9 +2,8 @@ package christmas.view;
 
 import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
-import christmas.model.Food;
+import christmas.model.Present;
 import java.text.DecimalFormat;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class OutputView {
@@ -13,6 +12,7 @@ public class OutputView {
     private final String INIT_ORDER_MENU_MESSAGE = "<주문 메뉴>";
     private final String INIT_BENEFIT_MESSAGE = "<해택 내역>";
     private final String INIT_TOTAL_PRICE = "<할인 전 총주문 금액>";
+    private final String INIT_PRESENT_MESSAGE = "<증정 메뉴>";
     private final String ORDER_MENU_MESSAGE = "%s %d개";
     private final String PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
@@ -38,16 +38,19 @@ public class OutputView {
         System.out.println(decFormat.format(price)+"원");
     }
 
-    public void printBenefitTitle() {
+    public void printBenefit(Benefits benefits) {
         System.out.println();
         System.out.println(INIT_BENEFIT_MESSAGE);
-    }
-
-    public void printBenefit(Benefits benefits) {
         System.out.println(benefits);
     }
 
     public void printPreviewMessage() {
         System.out.println();
+    }
+
+    public void printpresent(Present present) {
+        System.out.println();
+        System.out.println(INIT_PRESENT_MESSAGE);
+        System.out.println(present);
     }
 }

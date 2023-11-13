@@ -21,4 +21,8 @@ public class Present {
                 .sum();
         return total > 120000;
     }
+    @Override
+    public String toString(){
+        return presentLog.toString();
+    }
 }

@@ -5,6 +5,7 @@ import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
 import christmas.model.Food;
 import christmas.model.Order;
+import christmas.model.Present;
 import christmas.model.Week;
 import christmas.model.Menu;
 import christmas.view.InputView;
@@ -25,12 +26,17 @@ public class ChristmasApplication {
         Week week = getWeek(date);
         Order order = getOrder();
         ConfirmOrder confirmOrder = new ConfirmOrder(makeOrderSheet(order),date,week);
+        Present present = new Present(confirmOrder);
         printOrderInformation(confirmOrder);
-        applyBenefits(confirmOrder);
+        printPresent(present);
+        printApplyBenefits(confirmOrder);
     }
 
-    private void applyBenefits(ConfirmOrder confirmOrder) {
-        outputView.printBenefitTitle();
+    private void printPresent(Present present) {
+        outputView.printpresent(present);
+    }
+
+    private void printApplyBenefits(ConfirmOrder confirmOrder) {
         outputView.printBenefit(new Benefits(confirmOrder));
     }
 
