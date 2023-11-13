@@ -33,7 +33,10 @@ public class ChristmasApplication {
     private void printOrderInformation(ConfirmOrder confirmOrder,Present present) {
         outputView.printOrderInformation(confirmOrder);
         outputView.printpresent(present);
-        outputView.printBenefit(new Benefits(confirmOrder),present);
+        Benefits benefits = new Benefits(confirmOrder);
+        outputView.printBenefit(benefits,present);
+        outputView.printTotalBenefitPrice(benefits.getBenefitPrice() + present.getPresentPrice());
+        outputView.printAfterEventPrice(confirmOrder.getTotalPrice() - benefits.getBenefitPrice());
     }
 
     private Map<Food, Integer> makeOrderSheet(Order order) {

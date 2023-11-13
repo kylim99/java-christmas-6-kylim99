@@ -28,4 +28,8 @@ public class Present {
     public String getPresent() {
         return present.toString();
     }
+
+    public int getPresentPrice() {
+        return presentPrice;
+    }
 }

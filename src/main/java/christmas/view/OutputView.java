@@ -13,6 +13,8 @@ public class OutputView {
     private final String INIT_BENEFIT_MESSAGE = "<해택 내역>";
     private final String INIT_TOTAL_PRICE = "<할인 전 총주문 금액>";
     private final String INIT_PRESENT_MESSAGE = "<증정 메뉴>";
+    private final String INIT_TOTAL_BENEFIT_MESSAGE = "<총혜택 금액>";
+    private final String INIT_AFTER_TOTAL_PRICE_MESSAGE = "<할인 후 예상 결제 금액>";
     private final String ORDER_MENU_MESSAGE = "%s %d개";
     private final String PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
@@ -22,20 +24,19 @@ public class OutputView {
 
     public void printOrderInformation(ConfirmOrder confirmOrder) {
         System.out.println(String.format(PREVIEW_MESSAGE,confirmOrder.getDate()));
-        AtomicInteger totalPrice = new AtomicInteger();
         System.out.println();
         System.out.println(INIT_ORDER_MENU_MESSAGE);
-        confirmOrder.getConfirmOrder().forEach((food, quantity) -> {
-            System.out.println(String.format(ORDER_MENU_MESSAGE, food.getName(), quantity));
-            totalPrice.addAndGet(food.getPrice() * quantity);
+        confirmOrder.getConfirmOrder()
+                .forEach((food, quantity) -> {
+                    System.out.println(String.format(ORDER_MENU_MESSAGE, food.getName(), quantity));
         });
         System.out.println();
-        printTotalPriceBeforeEvent(totalPrice);
+        printTotalPriceBeforeEvent(confirmOrder);
     }
 
-    private void printTotalPriceBeforeEvent(AtomicInteger price) {
+    private void printTotalPriceBeforeEvent(ConfirmOrder confirmOrder) {
         System.out.println(INIT_TOTAL_PRICE);
-        System.out.println(decFormat.format(price)+"원");
+        System.out.println(decFormat.format(confirmOrder.getTotalPrice())+"원");
     }
 
     public void printBenefit(Benefits benefits,Present present) {
@@ -53,5 +54,17 @@ public class OutputView {
         System.out.println();
         System.out.println(INIT_PRESENT_MESSAGE);
         System.out.println(present.getPresent());
+    }
+
+    public void printTotalBenefitPrice(int totalBenefitPrice) {
+        System.out.println();
+        System.out.println(INIT_TOTAL_BENEFIT_MESSAGE);
+        System.out.println("-"+ decFormat.format(totalBenefitPrice) + "원");
+    }
+
+    public void printAfterEventPrice(int price) {
+        System.out.println();
+        System.out.println(INIT_AFTER_TOTAL_PRICE_MESSAGE);
+        System.out.println(decFormat.format(price) + "원");
     }
 }
