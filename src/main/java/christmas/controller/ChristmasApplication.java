@@ -27,21 +27,13 @@ public class ChristmasApplication {
         Order order = getOrder();
         ConfirmOrder confirmOrder = new ConfirmOrder(makeOrderSheet(order),date,week);
         Present present = new Present(confirmOrder);
-        printOrderInformation(confirmOrder);
-        printPresent(present);
-        printApplyBenefits(confirmOrder);
+        printOrderInformation(confirmOrder,present);
     }
 
-    private void printPresent(Present present) {
-        outputView.printpresent(present);
-    }
-
-    private void printApplyBenefits(ConfirmOrder confirmOrder) {
-        outputView.printBenefit(new Benefits(confirmOrder));
-    }
-
-    private void printOrderInformation(ConfirmOrder confirmOrder) {
+    private void printOrderInformation(ConfirmOrder confirmOrder,Present present) {
         outputView.printOrderInformation(confirmOrder);
+        outputView.printpresent(present);
+        outputView.printBenefit(new Benefits(confirmOrder),present);
     }
 
     private Map<Food, Integer> makeOrderSheet(Order order) {

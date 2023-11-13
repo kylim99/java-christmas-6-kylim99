@@ -2,16 +2,15 @@ package christmas.model;
 
 public class Present {
     private int presentPrice;
-    private StringBuilder presentLog;
+    private StringBuilder presentLog= new StringBuilder();
+    private StringBuilder present = new StringBuilder("없음");
 
     public Present(ConfirmOrder confirmOrder){
         if(confirmPrice(confirmOrder)){
             presentPrice = 25000;
-            presentLog = new StringBuilder("샴페인 1개");
-        }else {
-            presentLog = new StringBuilder("없음");
+            presentLog.append("증정 이벤트: -25,000원");
+            present = new StringBuilder("샴페인 1개");
         }
-
     }
 
     private boolean confirmPrice(ConfirmOrder confirmOrder) {
@@ -21,8 +20,12 @@ public class Present {
                 .sum();
         return total > 120000;
     }
-    @Override
-    public String toString(){
+
+    public String getPresentLog(){
         return presentLog.toString();
+    }
+
+    public String getPresent() {
+        return present.toString();
     }
 }

@@ -5,9 +5,10 @@ import java.util.Map;
 public class Benefits {
 
     private int benefitPrice = 0;
-    private final StringBuilder benefitLog = new StringBuilder();
+    private StringBuilder benefitLog = new StringBuilder("없음");
     public Benefits(ConfirmOrder confirmOrder){
         if(confirmPrice(confirmOrder)){
+            benefitLog = new StringBuilder();
             applyDayBenefit(confirmOrder);
             applyWeekendBenefit(confirmOrder);
             applyWeekdayBenefit(confirmOrder);
@@ -26,7 +27,7 @@ public class Benefits {
     private void applySpecialDayBenefit(ConfirmOrder confirmOrder) {
         if(isSpecialDay(confirmOrder.getWeek(),confirmOrder.getDate())){
             benefitPrice += 1000;
-            benefitLog.append("특별 할인: -1,000원");
+            benefitLog.append("특별 할인: -1,000원\n");
         }
     }
 

@@ -38,10 +38,11 @@ public class OutputView {
         System.out.println(decFormat.format(price)+"원");
     }
 
-    public void printBenefit(Benefits benefits) {
+    public void printBenefit(Benefits benefits,Present present) {
         System.out.println();
         System.out.println(INIT_BENEFIT_MESSAGE);
-        System.out.println(benefits);
+        System.out.print(benefits);
+        System.out.println(present.getPresentLog());
     }
 
     public void printPreviewMessage() {
@@ -51,6 +52,6 @@ public class OutputView {
     public void printpresent(Present present) {
         System.out.println();
         System.out.println(INIT_PRESENT_MESSAGE);
-        System.out.println(present);
+        System.out.println(present.getPresent());
     }
 }
