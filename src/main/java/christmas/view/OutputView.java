@@ -59,7 +59,7 @@ public class OutputView {
     public void printTotalBenefitPrice(int totalBenefitPrice) {
         System.out.println();
         System.out.println(INIT_TOTAL_BENEFIT_MESSAGE);
-        System.out.println("-"+ decFormat.format(totalBenefitPrice) + "원");
+        System.out.println(decFormat.format(totalBenefitPrice) + "원");
     }
 
     public void printAfterEventPrice(int price) {

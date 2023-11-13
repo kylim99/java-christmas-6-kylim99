@@ -26,7 +26,7 @@ public class Benefits {
 
     private void applySpecialDayBenefit(ConfirmOrder confirmOrder) {
         if(isSpecialDay(confirmOrder.getWeek(),confirmOrder.getDate())){
-            benefitPrice += 1000;
+            benefitPrice -= 1000;
             benefitLog.append("특별 할인: -1,000원\n");
         }
     }
@@ -49,7 +49,7 @@ public class Benefits {
                 .filter(entry -> entry.getKey().getType() == Type.DESSERT)
                 .mapToInt(entry -> 2023 * entry.getValue())
                 .sum();
-        benefitPrice += benefit;
+        benefitPrice -= benefit;
         benefitLog.append(String.format("평일 할인: -%d원\n",benefit));
     }
 
@@ -64,7 +64,7 @@ public class Benefits {
                 .filter(entry -> entry.getKey().getType() == Type.MAIN)
                 .mapToInt(entry -> 2023 * entry.getValue())
                 .sum();
-        benefitPrice += benefit;
+        benefitPrice -= benefit;
         benefitLog.append(String.format("주말 할인: -%d원\n",benefit));
     }
 
@@ -75,7 +75,7 @@ public class Benefits {
     private void applyDayBenefit(ConfirmOrder confirmOrder) {
         if(isInDayBenefitPeriod(confirmOrder.getDate())){
             int benefit = (confirmOrder.getDate() - 1) * 100 + 1000;
-            benefitPrice += benefit;
+            benefitPrice -= benefit;
             benefitLog.append(String.format("크리스마스 디데이 할인: -%d원\n",benefit));
         }
     }
