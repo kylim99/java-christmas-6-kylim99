@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.Badge;
 import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
 import christmas.model.Present;
@@ -10,7 +11,7 @@ public class OutputView {
     DecimalFormat decFormat = new DecimalFormat("###,###");
     private final String WELCOME_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     private final String INIT_ORDER_MENU_MESSAGE = "<주문 메뉴>";
-    private final String INIT_BENEFIT_MESSAGE = "<해택 내역>";
+    private final String INIT_BENEFIT_MESSAGE = "<혜택 내역>";
     private final String INIT_TOTAL_PRICE = "<할인 전 총주문 금액>";
     private final String INIT_PRESENT_MESSAGE = "<증정 메뉴>";
     private final String INIT_TOTAL_BENEFIT_MESSAGE = "<총혜택 금액>";
@@ -66,5 +67,11 @@ public class OutputView {
         System.out.println();
         System.out.println(INIT_AFTER_TOTAL_PRICE_MESSAGE);
         System.out.println(decFormat.format(price) + "원");
+    }
+
+    public void printBadge(Badge badge) {
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badge.getBadgeName());
     }
 }
