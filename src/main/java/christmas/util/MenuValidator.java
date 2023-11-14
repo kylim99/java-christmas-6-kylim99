@@ -14,7 +14,7 @@ public class MenuValidator extends Validator{
             System.out.println("형태가 아님");
             return false;
         }
-        if(isOrderNotInMenu(input)){
+        if(validationManager(input)){
             System.out.println("메뉴에 없음");
             return false;
         }
@@ -22,10 +22,17 @@ public class MenuValidator extends Validator{
     }
 
 
-    private boolean isOrderNotInMenu(String input) {
+    private boolean validationManager(String input) {
         List<String> inputMenu = Arrays.asList(input.split(","));
         return inputMenu.stream()
-                .anyMatch(order -> isNotInMenu(order.split("-")[0]));
+                .anyMatch(order ->
+                        isOrderZero(order.split("-")[1])|| isNotInMenu(order.split("-")[0])
+                );
+    }
+
+    private boolean isOrderZero(String input) {
+        int amount = Integer.parseInt(input);
+        return amount == 0;
     }
 
     private boolean isNotInMenu(String order) {
