@@ -31,7 +31,19 @@ public class MenuValidator extends Validator{
             System.out.println("음료만 주문");
             return false;
         }
+        if(isOverOrder(input)){
+            System.out.println("20개 이상");
+            return false;
+        }
         return true;
+    }
+
+    private boolean isOverOrder(String input) {
+        int count = Arrays.stream(input.split(","))
+                .mapToInt(order -> Integer.parseInt(order.split("-")[1]))
+                .sum();
+
+        return count > 20;
     }
 
     private boolean isOnlyBeverage(String input) {
