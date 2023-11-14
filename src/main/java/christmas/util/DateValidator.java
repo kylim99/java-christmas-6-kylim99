@@ -10,7 +10,15 @@ public class DateValidator extends Validator{
         if(hasBlank(input)){
             return false;
         }
+        if(isNotInRange(input)){
+            return false;
+        }
         return true;
+    }
+
+    private boolean isNotInRange(String input) {
+        int date = Integer.parseInt(input);
+        return date < 1 || date > 31;
     }
 
     private boolean hasBlank(String input) {
