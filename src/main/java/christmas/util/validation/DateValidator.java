@@ -1,19 +1,21 @@
-package christmas.util;
+package christmas.util.validation;
 
-public class DateValidator extends Validator{
+import christmas.util.constatnt.ExceptionMessage;
+
+public class DateValidator extends Validator {
 
     @Override
     public boolean validation(String input) {
         if(isNotNumeric(input)){
-            System.out.println("not");
+            System.out.println(ExceptionMessage.INVALID_DATE_INPUT.getMessage());
             return false;
         }
         if(hasBlank(input)){
-            System.out.println("not");
+            System.out.println(ExceptionMessage.INVALID_DATE_INPUT.getMessage());
             return false;
         }
         if(isNotInRange(input)){
-            System.out.println("not");
+            System.out.println(ExceptionMessage.INVALID_DATE_INPUT.getMessage());
             return false;
         }
         return true;

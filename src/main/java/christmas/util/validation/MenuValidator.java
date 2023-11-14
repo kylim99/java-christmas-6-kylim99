@@ -1,38 +1,38 @@
-package christmas.util;
+package christmas.util.validation;
 
 import christmas.model.Food;
 import christmas.model.Menu;
 import christmas.model.Type;
-import java.util.ArrayList;
+import christmas.util.constatnt.ExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class MenuValidator extends Validator{
+public class MenuValidator extends Validator {
     private final String regex = "^([가-힣]+-\\d+,)*[가-힣]+-\\d+$";
     private final Menu menu = new Menu();
     @Override
     public boolean validation(String input) {
         if(isNotValidFormat(input)){
-            System.out.println("형태가 아님");
+            System.out.println(ExceptionMessage.INVALID_MENU_INPUT.getMessage());
             return false;
         }
         if(validationManager(input)){
-            System.out.println("메뉴에 없음");
+            System.out.println(ExceptionMessage.INVALID_MENU_INPUT.getMessage());
             return false;
         }
         if(isDuplicate(input)){
-            System.out.println("중복 주문");
+            System.out.println(ExceptionMessage.INVALID_MENU_INPUT.getMessage());
             return false;
         }
         if(isOnlyBeverage(input)){
-            System.out.println("음료만 주문");
+            System.out.println(ExceptionMessage.INVALID_MENU_INPUT.getMessage());
             return false;
         }
         if(isOverOrder(input)){
-            System.out.println("20개 이상");
+            System.out.println(ExceptionMessage.INVALID_MENU_INPUT.getMessage());
             return false;
         }
         return true;

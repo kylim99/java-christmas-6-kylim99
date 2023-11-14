@@ -1,9 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.util.DateValidator;
-import christmas.util.MenuValidator;
-import java.util.HashMap;
+import christmas.util.validation.DateValidator;
+import christmas.util.validation.MenuValidator;
 
 public class InputView {
 
