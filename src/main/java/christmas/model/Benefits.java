@@ -41,9 +41,13 @@ public class Benefits {
     }
 
     private void applyWeekdayBenefit(ConfirmOrder confirmOrder) {
-        if(!isWeekend(confirmOrder.getWeek())){
+        if(!isWeekend(confirmOrder.getWeek()) && isOrderHasDesset(confirmOrder)){
             addBenefitPricePerDessert(confirmOrder.getConfirmOrder());
         }
+    }
+
+    private boolean isOrderHasDesset(ConfirmOrder confirmOrder) {
+        return confirmOrder.getConfirmOrder().keySet().stream().anyMatch(food -> food.getType() == Type.DESSERT);
     }
 
     private void addBenefitPricePerDessert(Map<Food, Integer> confirmOrder) {
@@ -56,9 +60,13 @@ public class Benefits {
     }
 
     private void applyWeekendBenefit(ConfirmOrder confirmOrder) {
-        if(isWeekend(confirmOrder.getWeek())){
+        if(isWeekend(confirmOrder.getWeek()) && isOrderHasMain(confirmOrder)){
             addBenefitPricePerMain(confirmOrder.getConfirmOrder());
         }
+    }
+
+    private boolean isOrderHasMain(ConfirmOrder confirmOrder) {
+        return confirmOrder.getConfirmOrder().keySet().stream().anyMatch(food -> food.getType() == Type.MAIN);
     }
 
     private void addBenefitPricePerMain(Map<Food, Integer> confirmOrder) {
