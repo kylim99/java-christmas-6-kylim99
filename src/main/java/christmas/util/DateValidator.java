@@ -5,12 +5,15 @@ public class DateValidator extends Validator{
     @Override
     public boolean validation(String input) {
         if(isNotNumeric(input)){
+            System.out.println("not");
             return false;
         }
         if(hasBlank(input)){
+            System.out.println("not");
             return false;
         }
         if(isNotInRange(input)){
+            System.out.println("not");
             return false;
         }
         return true;
@@ -30,7 +33,7 @@ public class DateValidator extends Validator{
             Integer.parseInt(input);
             return false;
         }catch (NumberFormatException exception){
-            return false;
+            return true;
         }
     }
 }
