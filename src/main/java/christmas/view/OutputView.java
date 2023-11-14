@@ -1,23 +1,14 @@
 package christmas.view;
 
+import static christmas.util.constatnt.Constant.*;
+
 import christmas.model.Badge;
 import christmas.model.Benefits;
 import christmas.model.ConfirmOrder;
 import christmas.model.Present;
-import java.text.DecimalFormat;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class OutputView {
-    DecimalFormat decFormat = new DecimalFormat("###,###");
-    private final String WELCOME_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private final String INIT_ORDER_MENU_MESSAGE = "<주문 메뉴>";
-    private final String INIT_BENEFIT_MESSAGE = "<혜택 내역>";
-    private final String INIT_TOTAL_PRICE = "<할인 전 총주문 금액>";
-    private final String INIT_PRESENT_MESSAGE = "<증정 메뉴>";
-    private final String INIT_TOTAL_BENEFIT_MESSAGE = "<총혜택 금액>";
-    private final String INIT_AFTER_TOTAL_PRICE_MESSAGE = "<할인 후 예상 결제 금액>";
-    private final String ORDER_MENU_MESSAGE = "%s %d개";
-    private final String PREVIEW_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+
 
     public void printWelcomeMessage(){
         System.out.println(WELCOME_MESSAGE);
@@ -45,10 +36,6 @@ public class OutputView {
         System.out.println(INIT_BENEFIT_MESSAGE);
         System.out.print(benefits);
         System.out.println(present.getPresentLog());
-    }
-
-    public void printPreviewMessage() {
-        System.out.println();
     }
 
     public void printpresent(Present present) {

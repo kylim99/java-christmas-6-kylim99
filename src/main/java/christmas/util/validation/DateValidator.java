@@ -1,6 +1,6 @@
 package christmas.util.validation;
 
-import christmas.util.constatnt.ExceptionMessage;
+import christmas.util.ExceptionMessage;
 
 public class DateValidator extends Validator {
 

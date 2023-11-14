@@ -1,5 +1,8 @@
 package christmas.model;
 
+import static christmas.util.constatnt.Constant.COMMA;
+import static christmas.util.constatnt.Constant.MINUS_SIGN;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,13 +13,13 @@ public class Order {
     private Map<String,Integer> orderSheet = new HashMap<>();
 
     public Order(String input){
-        List<String> order = Arrays.stream(input.split(",")).toList();
+        List<String> order = Arrays.stream(input.split(COMMA)).toList();
         putOrder(order);
     }
 
     private void putOrder(List<String> orders) {
         this.orderSheet = orders.stream()
-                .map(order -> order.split("-"))
+                .map(order -> order.split(MINUS_SIGN))
                 .collect(Collectors.toMap(
                         splitOrder -> splitOrder[0],
                         splitOrder -> Integer.parseInt(splitOrder[1])

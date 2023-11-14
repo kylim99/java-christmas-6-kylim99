@@ -1,4 +1,4 @@
-package christmas.util.constatnt;
+package christmas.util;
 
 public enum ExceptionMessage {
 

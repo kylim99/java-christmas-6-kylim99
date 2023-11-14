@@ -1,5 +1,7 @@
 package christmas.model;
 
+import static christmas.util.constatnt.Constant.MINUS_SIGN;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class Menu {
     }
 
     private Food makeFood(String line) {
-        String[] information = line.split("-");
+        String[] information = line.split(MINUS_SIGN);
         int price = Integer.parseInt(information[1]);
         Type type = getType(information[2]);
         return new Food(information[0],price,type);

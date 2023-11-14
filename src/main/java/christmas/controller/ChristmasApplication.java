@@ -19,9 +19,15 @@ import java.util.stream.Collectors;
 
 public class ChristmasApplication {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final Menu menu = new Menu();
+    private final InputView inputView ;
+    private final OutputView outputView ;
+    private final Menu menu ;
+
+    public ChristmasApplication(InputView inputView, OutputView outputView, Menu menu) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.menu = menu;
+    }
 
     public void run(){
         int date = getDate();

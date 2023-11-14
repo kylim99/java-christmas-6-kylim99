@@ -1,5 +1,7 @@
 package christmas.model;
 
+import static christmas.util.constatnt.Constant.decFormat;
+
 import java.util.Map;
 
 public class Benefits {
@@ -50,7 +52,7 @@ public class Benefits {
                 .mapToInt(entry -> 2023 * entry.getValue())
                 .sum();
         benefitPrice -= benefit;
-        benefitLog.append(String.format("평일 할인: -%d원\n",benefit));
+        benefitLog.append(String.format("평일 할인: -%s원\n",decFormat.format(benefit)));
     }
 
     private void applyWeekendBenefit(ConfirmOrder confirmOrder) {
@@ -65,7 +67,7 @@ public class Benefits {
                 .mapToInt(entry -> 2023 * entry.getValue())
                 .sum();
         benefitPrice -= benefit;
-        benefitLog.append(String.format("주말 할인: -%d원\n",benefit));
+        benefitLog.append(String.format("주말 할인: -%s원\n",decFormat.format(benefit)));
     }
 
     private boolean isWeekend(Week week) {
@@ -76,7 +78,7 @@ public class Benefits {
         if(isInDayBenefitPeriod(confirmOrder.getDate())){
             int benefit = (confirmOrder.getDate() - 1) * 100 + 1000;
             benefitPrice -= benefit;
-            benefitLog.append(String.format("크리스마스 디데이 할인: -%d원\n",benefit));
+            benefitLog.append(String.format("크리스마스 디데이 할인: -%s원\n", decFormat.format(benefit)));
         }
     }
 

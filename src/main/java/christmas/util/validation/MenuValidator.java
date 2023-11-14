@@ -1,9 +1,12 @@
 package christmas.util.validation;
 
+import static christmas.util.constatnt.Constant.COMMA;
+import static christmas.util.constatnt.Constant.MINUS_SIGN;
+
 import christmas.model.Food;
 import christmas.model.Menu;
 import christmas.model.Type;
-import christmas.util.constatnt.ExceptionMessage;
+import christmas.util.ExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -39,8 +42,8 @@ public class MenuValidator extends Validator {
     }
 
     private boolean isOverOrder(String input) {
-        int count = Arrays.stream(input.split(","))
-                .mapToInt(order -> Integer.parseInt(order.split("-")[1]))
+        int count = Arrays.stream(input.split(COMMA))
+                .mapToInt(order -> Integer.parseInt(order.split(MINUS_SIGN)[1]))
                 .sum();
 
         return count > 20;
@@ -52,8 +55,8 @@ public class MenuValidator extends Validator {
                 .map(Food::getName)
                 .collect(Collectors.toList());
 
-        return Arrays.stream(input.split(","))
-                .allMatch(order -> beverages.contains(order.split("-")[0]));
+        return Arrays.stream(input.split(COMMA))
+                .allMatch(order -> beverages.contains(order.split(MINUS_SIGN)[0]));
     }
 
 
@@ -62,7 +65,7 @@ public class MenuValidator extends Validator {
         Pattern pattern = Pattern.compile("([가-힣]+)-\\d+");
         Matcher matcher = pattern.matcher(input);
 
-        List<String> menus = Arrays.asList(input.split(","));
+        List<String> menus = Arrays.asList(input.split(COMMA));
 
         return menus.stream()
                 .map(menu -> matcher.reset(menu).matches() ? matcher.group(1) : null)
