@@ -2,6 +2,7 @@ package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.util.DateValidator;
+import christmas.util.MenuValidator;
 import java.util.HashMap;
 
 public class InputView {
@@ -10,6 +11,7 @@ public class InputView {
     private final String MENU_INPUT_MESSAGE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
 
     private final DateValidator dateValidator = new DateValidator();
+    private final MenuValidator menuValidator = new MenuValidator();
 
     public int readDate() {
         System.out.println(DATE_INPUT_MESSAGE);
@@ -22,7 +24,11 @@ public class InputView {
 
     public String readMenu(){
         System.out.println(MENU_INPUT_MESSAGE);
-        return Console.readLine();
+        String input;
+        do {
+            input = Console.readLine();
+        }while (!menuValidator.validation(input));
+        return input;
     }
 
 
