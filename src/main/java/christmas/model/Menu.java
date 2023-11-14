@@ -2,6 +2,7 @@ package christmas.model;
 
 import static christmas.util.constatnt.Constant.MINUS_SIGN;
 
+import christmas.util.ExceptionMessage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class Menu {
                 menus.add(food);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(ExceptionMessage.BASE_MESSAGE);
         }
     }
 
