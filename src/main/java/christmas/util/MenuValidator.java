@@ -2,11 +2,13 @@ package christmas.util;
 
 import christmas.model.Food;
 import christmas.model.Menu;
+import christmas.model.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class MenuValidator extends Validator{
     private final String regex = "^([가-힣]+-\\d+,)*[가-힣]+-\\d+$";
@@ -25,7 +27,21 @@ public class MenuValidator extends Validator{
             System.out.println("중복 주문");
             return false;
         }
+        if(isOnlyBeverage(input)){
+            System.out.println("음료만 주문");
+            return false;
+        }
         return true;
+    }
+
+    private boolean isOnlyBeverage(String input) {
+        List<String> beverages = menu.getMenus().stream()
+                .filter(f -> f.getType() == Type.BEVERAGE)
+                .map(Food::getName)
+                .collect(Collectors.toList());
+
+        return Arrays.stream(input.split(","))
+                .allMatch(order -> beverages.contains(order.split("-")[0]));
     }
 
 
