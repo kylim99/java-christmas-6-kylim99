@@ -2,8 +2,11 @@ package christmas.util;
 
 import christmas.model.Food;
 import christmas.model.Menu;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MenuValidator extends Validator{
     private final String regex = "^([가-힣]+-\\d+,)*[가-힣]+-\\d+$";
@@ -18,7 +21,26 @@ public class MenuValidator extends Validator{
             System.out.println("메뉴에 없음");
             return false;
         }
+        if(isDuplicate(input)){
+            System.out.println("중복 주문");
+            return false;
+        }
         return true;
+    }
+
+
+    private static boolean isDuplicate(String input) {
+
+        Pattern pattern = Pattern.compile("([가-힣]+)-\\d+");
+        Matcher matcher = pattern.matcher(input);
+
+        List<String> menus = Arrays.asList(input.split(","));
+
+        return menus.stream()
+                .map(menu -> matcher.reset(menu).matches() ? matcher.group(1) : null)
+                .filter(menu -> menu != null)
+                .distinct()
+                .count() != menus.size();
     }
 
 
