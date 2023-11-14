@@ -7,7 +7,14 @@ public class DateValidator extends Validator{
         if(isNotNumeric(input)){
             return false;
         }
+        if(hasBlank(input)){
+            return false;
+        }
         return true;
+    }
+
+    private boolean hasBlank(String input) {
+        return input.contains(" ");
     }
 
     private boolean isNotNumeric(String input) {
